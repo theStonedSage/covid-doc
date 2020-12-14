@@ -1,0 +1,37 @@
+<%- include("header") -%>
+
+<div class="container mt-4">
+    <div id="selectmore" class="row hide">
+        <div style="text-align: center" class="col border border-primary p-2 rborder m-3">
+            <p>Select an option</p>
+        </div>
+    </div>
+    <div id="selectone" class="row hide">
+        <div style="text-align: center" class="col border border-primary p-2 rborder m-3">
+            <p>Select only one option</p>
+        </div>
+    </div>
+    <div class="row">
+        <div style="text-align: center" class="col border border-primary p-2 rborder m-3">
+            <p><%= data.question.text %> </p>
+        </div>
+    </div>
+    <input type="hidden" value="<%= data.question.type %>" id="type" >
+    <% data.question.items.forEach(element => { %>
+        <div class="row">
+            <div style="text-align: center" class="col border border-danger p-2 rborder m-3">
+                <h5><%= element.name %> </h5>
+                <p><%= element.explanation %></p>
+                <select class="form-control" name="<%= element.id %>" >
+                    <% for(var i=element.choices.length-1;i>=0;i--){ %> 
+                    <option value="<%= element.choices[i].id %>"><%= element.choices[i].label %> </option>
+                    <% } %> 
+                </select>
+            </div>
+        </div>
+    <% }); %>
+    <button class="btn btn-success" onclick="loadnext()" >Next</button>
+    <a href="/test" id="about"></a></div>
+
+
+<%- include("footer") -%>
